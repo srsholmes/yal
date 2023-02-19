@@ -8,7 +8,7 @@ Yal has been designed with the goal of being the simple, powerful and fast. With
 
 <br style="clear: both;">
 
-## Screenshot
+## Screenshots
 
 ![Yal Screenshot](./apps/yal/resources/web-plugin.png 'Yal Screenshot')
 ![Yal Screenshot](./apps/yal/resources/react-plugin.png 'Yal React App Screenshot')

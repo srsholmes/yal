@@ -1,0 +1,9 @@
+{
+  "rust-analyzer.linkedProjects": [
+    "./apps/yal/src-tauri/Cargo.toml"
+  ],
+  "cSpell.words": [
+    "Enigo",
+    "objc"
+  ]
+}

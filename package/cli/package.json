@@ -1,0 +1,42 @@
+{
+  "name": "@yal-app/cli",
+  "version": "0.0.309",
+  "scripts": {
+    "build": "yarn output:prompt && yarn output:server && yarn output:installer",
+    "test:prompt": "yarn output:prompt && yarn node dist/plugin-prompt.mjs",
+    "output:prompt": "esbuild src/index.ts --bundle --platform=node --outfile=dist/plugin-prompt.mjs --banner:js='import { createRequire as topLevelCreateRequire } from \"module\"; const require = topLevelCreateRequire(import.meta.url);'",
+    "test:server": "yarn output:server && yarn node dist/plugin-server.mjs",
+    "output:server": "esbuild esbuild/plugin-server.ts --bundle --external:esbuild --platform=node --outfile=dist/plugin-server.mjs --banner:js='import { createRequire as topLevelCreateRequire } from \"module\"; const require = topLevelCreateRequire(import.meta.url);'",
+    "test:installer": "yarn output:installer && yarn node dist/plugin-installer.mjs",
+    "output:installer": "esbuild esbuild/plugin-installer.ts --bundle --external:esbuild --platform=node --outfile=dist/plugin-installer.mjs --banner:js='import { createRequire as topLevelCreateRequire } from \"module\"; const require = topLevelCreateRequire(import.meta.url);'"
+  },
+  "main": "dist/plugin-prompt.mjs",
+  "bin": {
+    "create-yal-plugin": "dist/plugin-prompt.mjs",
+    "develop-yal-plugin": "dist/plugin-server.mjs",
+    "install-yal-plugin": "dist/plugin-installer.mjs"
+  },
+  "private": false,
+  "type": "module",
+  "targets": {
+    "browser": {
+      "includeNodeModules": true,
+      "outputFormat": "esmodule",
+      "engines": {
+        "browsers": [
+          "> 1%",
+          "not dead"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/prompts": "2.4.1"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.38",
+    "esbuild-svelte": ">=0.5.4",
+    "prompts": "2.4.2",
+    "tsx": "3.12.1"
+  }
+}

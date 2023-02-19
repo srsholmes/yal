@@ -1,0 +1,53 @@
+cargo-features = ["edition2021"]
+[package]
+name = "app"
+version = "0.1.0"
+description = "Yal - Yet Another Launcher"
+authors = ["Simon Holmes"]
+license = ""
+repository = ""
+default-run = "app"
+edition = "2021"
+build = "src/build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.1.1", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.2.0", features = ["api-all", "devtools", "macos-private-api", "process-command-api", "system-tray"] }
+#tauri = { git = "https://github.com/tauri-apps/tauri", branch = "next", features = ["api-all", "macos-private-api", "system-tray"] }
+libc = "0.2"
+cocoa = "0.24"
+objc = "0.2"
+enigo = "0.0.14"
+macos-accessibility-client = "0.0.1"
+os_pipe = { version = "1.0" }
+shared_child = { version = "1.0" }
+tauri-utils = { version = "1.1.1" }
+once_cell = "1.10"
+memchr = { version = "2.4" }
+
+log = "0.4"
+tauri-plugin-log = { git = "https://github.com/tauri-apps/tauri-plugin-log" }
+tauri-plugin-fs-watch = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
+
+[dependencies.fix-path-env]
+git = "https://github.com/tauri-apps/fix-path-env-rs"
+branch = "dev"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
+[patch.crates-io]
+# tauri = { path = '../../../tauri-custom/core/tauri' }
+# tauri = { path = '/Users/srsholmes/Work/junk/tauri/core/tauri' }
+
+# Dev tools in prod.
+[profile.release.package.wry]
+debug = true
+debug-assertions = true

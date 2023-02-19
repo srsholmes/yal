@@ -1,0 +1,19 @@
+{
+  "name": "@yal-app/types",
+  "version": "0.0.16",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "type": "module",
+  "prettier": {
+    "singleQuote": true
+  },
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@tauri-apps/api": "1.2.0",
+    "solid-toast": "0.4.0"
+  }
+}

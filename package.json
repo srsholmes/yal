@@ -1,0 +1,37 @@
+{
+  "name": "yal",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "package/*",
+      "yal-app/*"
+    ],
+    "nohoist": [
+      "@tailwindcss/forms",
+      "@tailwindcss/forms/**",
+      "@tailwindcss/aspect-ratio",
+      "@tailwindcss/forms",
+      "@tailwindcss/line-clamp",
+      "@tailwindcss/typography"
+    ]
+  },
+  "scripts": {
+    "dev": "yarn workspace @apps/yal tauri:dev",
+    "symlink:dotfiles": "ln -s ~/.yal ",
+    "install:all": "yarn workspace @apps/yal run prod:install && yarn install:themes",
+    "install:themes": "yarn workspace @package/themes run install:themes"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "latest",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "yarn@1.22.4"
+}

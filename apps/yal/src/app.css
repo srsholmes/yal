@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  border: 0;
+}
+
+#yal-wrapper {
+  height: 100vh;
+  overflow: scroll;
+}
+
+body.animate-all * {
+  transition: all 1s ease-in;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  /* height: 100vh; */
+  /* overflow: auto; */
+}

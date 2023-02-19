@@ -1,0 +1,10 @@
+{
+  "name": "@package/themes",
+  "version": "0.0.1",
+  "scripts": {
+    "install:themes": "npx tsx install-themes.ts"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}

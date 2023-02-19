@@ -1,0 +1,134 @@
+{
+  "build": {
+    "beforeBuildCommand": "yarn build",
+    "beforeDevCommand": "yarn dev",
+    "devPath": "http://localhost:5678",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "yal",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "macOSPrivateApi": true,
+    "systemTray": {
+      "iconPath": "icons/32x32.png"
+    },
+    "bundle": {
+      "active": true,
+      "targets": "app",
+      "identifier": "com.yal.app",
+      "category": "DeveloperTool",
+      "copyright": "",
+      "deb": {
+        "depends": []
+      },
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "resources": [],
+      "externalBin": ["bin/sfz", "bin/file-icon", "bin/fd"],
+      "shortDescription": "",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null,
+        "minimumSystemVersion": ""
+      },
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "allowlist": {
+      "all": true,
+      "fs": {
+        "all": true,
+        "scope": [
+          "$APP/*",
+          "$HOME/*",
+          "$DOWNLOAD/*",
+          "$RESOURCE/*",
+          "$DESKTOP/*"
+        ]
+      },
+      "http": {
+        "all": true,
+        "scope": ["https://**"]
+      },
+      "protocol": {
+        "asset": true,
+        "all": true,
+        "assetScope": ["**"]
+      },
+      "shell": {
+        "all": true,
+        "execute": true,
+        "sidecar": true,
+        "open": true,
+        "scope": [
+          {
+            "name": "bin/fd",
+            "sidecar": true,
+            "args": true
+          },
+          {
+            "name": "shell",
+            "cmd": "sh",
+            "args": ["-c", { "validator": "\\S+" }],
+            "sidecar": false
+          },
+          {
+            "name": "which",
+            "cmd": "which",
+            "args": [{ "validator": "^.*$" }],
+            "sidecar": false
+          },
+          {
+            "name": "command",
+            "cmd": "command",
+            "args": true,
+            "sidecar": false
+          },
+          {
+            "name": "open",
+            "cmd": "open",
+            "args": [{ "validator": "^.*$" }],
+            "sidecar": false
+          },
+          {
+            "name": "osascript",
+            "cmd": "osascript",
+            "args": ["-e", { "validator": "\\S+" }],
+            "sidecar": false
+          }
+        ]
+      }
+    },
+    "windows": [
+      {
+        "title": "yal",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "transparent": true,
+        "fullscreen": false,
+        "decorations": false
+      }
+    ]
+  }
+}

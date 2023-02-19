@@ -1,5 +1,7 @@
 # Yal plugins CLI
 
+## This is still a Work in progress. It is not ready for use yet.
+
 ### 🛠️ Scaffold the plugin
 
 ```bash

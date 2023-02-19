@@ -172,7 +172,7 @@ export function Result(props: ResultsProps) {
               >
                 <ResultIcon
                   pluginName={props.pluginName}
-                  icon={resultItem.icon}
+                  icon={resultItem?.icon}
                 />
                 <ResultInfo resultItem={resultItem} />
               </li>

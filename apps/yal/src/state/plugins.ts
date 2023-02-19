@@ -85,8 +85,8 @@ export async function setupPlugins() {
       },
       keyword: {
         ...prev.keyword,
-        keyword: {
-          plugin: getKeywords(thirdPartyPlugins.pluginsWithKeywordsMap),
+        plugins: {
+          plugin: getKeywords(thirdPartyPlugins),
         },
         ...thirdPartyPlugins.pluginsWithKeywordsMap,
       },

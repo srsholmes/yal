@@ -20,7 +20,8 @@ Releases are coming soon, but for now you can install Yal by cloning this repo a
 ```
 yarn
 ```
-and then 
+
+and then
 
 ```
 yarn workspace @apps/yal prod:install
@@ -31,6 +32,12 @@ yarn workspace @apps/yal prod:install
 ```
 yarn dev
 ```
+
+## Dev Tools
+
+Yal has dev tools enabled by default, in both production and development builds. This allows really quick development of new plugins with tools we are all familiar with. To open the dev tools, right click anywhere in the Yal window and select 'Inspect Element'.
+
+![Yal Screenshot With Dev tools](./apps/yal/resources/dev-tools-enabled.png 'Yal React App With Dev Tools Enabled')
 
 ## Plugins
 
@@ -118,6 +125,121 @@ The `filter` export is a boolean which will allow Yal to automatically filter th
 The search results are based on a fuzzy search.
 
 You will want to have `filter = false` when developing plugins which are going to be used from the top level screen, so the text does not filter their results.
+
+## Plugin Actions
+
+Each item in a plugin result can have an optional `action` property which will be called when the user clicks on the item, or selects the item and presses the return key.
+
+```javascript
+const plugin = async (args) => {
+  args.setState({
+    heading: 'Hello World',
+    state: [
+      {
+        name: 'This is the first result',
+        description: 'This is the first result description',
+        action: async ({ item, pluginActions }: ActionArgs) => {
+          await yal.copyToClipboard(item.metadata.hello); // Copies 'world' to the clipboard
+        },
+        metadata: {
+          hello: 'world',
+        },
+      },
+    ],
+  });
+};
+
+export default plugin;
+```
+
+The type signature for the action function is:
+
+```typescript
+type ActionArgs<T> = {
+  setState: <T>(state: PluginResult<T>) => void;
+  item: ResultLineItem<T>;
+  searchText?: string;
+  pluginActions: PluginActions;
+};
+```
+
+| Key           | Type                               | Function                                                                                                                                                                                                                                              |
+| ------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| setState      | `(state: PluginResult<T>) => void` | The setState function can be called to set a list of results.                                                                                                                                                                                         |
+| searchText    | `string`                           | The text property contains the text that the user has typed into the search box.                                                                                                                                                                      |
+| item          | `ResultLineItem<T>`                | This will be the item that the user clicks selects. Additional metadata (`<T>`) can be stored on each result which will be passed through to the action. This is really handy for passing through things you dont want the user to see e.g UUIDs etc. |
+| pluginActions | `PluginActions`                    | These are various functions and utilities which can be called to interact with the users system                                                                                                                                                       |
+
+### Plugin Actions
+
+The type signature for the plugin actions is:
+
+```typescript
+import * as index from '@tauri-apps/api';
+
+type PluginActions = {
+  copyToClipboard: (text: string) => Promise<void>;
+  fs: typeof index.fs;
+  app: typeof index.app;
+  dialog: typeof index.dialog;
+  globalShortcut: typeof index.globalShortcut;
+  http: typeof index.http;
+  notification: typeof index.notification;
+  path: {
+    convertFileSrc: typeof convertFileSrc;
+    appDir: typeof index.path.appDir;
+    appConfigDir: typeof index.path.appConfigDir;
+    appDataDir: typeof index.path.appDataDir;
+    appLocalDataDir: typeof index.path.appLocalDataDir;
+    appCacheDir: typeof index.path.appCacheDir;
+    appLogDir: typeof index.path.appLogDir;
+    audioDir: typeof index.path.audioDir;
+    cacheDir: typeof index.path.cacheDir;
+    configDir: typeof index.path.configDir;
+    dataDir: typeof index.path.dataDir;
+    desktopDir: typeof index.path.desktopDir;
+    documentDir: typeof index.path.documentDir;
+    downloadDir: typeof index.path.downloadDir;
+    executableDir: typeof index.path.executableDir;
+    fontDir: typeof index.path.fontDir;
+    homeDir: typeof index.path.homeDir;
+    localDataDir: typeof index.path.localDataDir;
+    pictureDir: typeof index.path.pictureDir;
+    publicDir: typeof index.path.publicDir;
+    resourceDir: typeof index.path.resourceDir;
+    runtimeDir: typeof index.path.runtimeDir;
+    templateDir: typeof index.path.templateDir;
+    videoDir: typeof index.path.videoDir;
+    logDir: typeof index.path.logDir;
+    BaseDirectory: typeof index.path.BaseDirectory;
+    sep: typeof index.path.sep;
+    delimiter: typeof index.path.delimiter;
+    resolve: typeof index.path.resolve;
+    normalize: typeof index.path.normalize;
+    join: typeof index.path.join;
+    dirname: typeof index.path.dirname;
+    basename: typeof index.path.basename;
+    isAbsolute: typeof index.path.isAbsolute;
+  };
+  process: typeof index.process;
+  shell: {
+    run: ({
+      binary,
+      args,
+    }: {
+      binary: string;
+      args?: string[];
+    }) => Promise<index.shell.ChildProcess>;
+    shellCommand: YalCommand;
+    open: YalCommand;
+    appleScript: ({ command }: { command: string }) => Promise<void>;
+    Command: typeof index.shell.Command;
+  };
+  windowUtils: typeof index.window;
+};
+```
+
+As you can see we have access to the entire Tauri API, as well as some additional utilities. For more information on the Tauri API, please see the [Tauri API Docs](https://tauri.app/v1/api/js/)
 
 ## Apps
 
@@ -269,6 +391,12 @@ Hopefully this gives you some insight as to how powerful apps can be in Yal.
 
 We're looking forward to seeing what the community comes up with.
 
+### Installed Plugins
+
+You can see all a list of currently installed plugins with keywords by searching for `plugins` in Yal.
+
+![See Installed plugins](./apps/yal/resources/plugins-installed.png 'See installed plugins')
+
 ## Themes
 
 ![Example of themes in Yal](./apps/yal/resources/themes.png 'Example of themes')
@@ -313,6 +441,21 @@ Here is an example of a theme:
 ```
 
 In the future I want to offer themimg via CSS files.
+
+## Configuration
+
+The config file for Yal is located at `~/.yal/config.json`. A typical config file looks like this
+
+```
+{
+  "theme": "yal-default",
+  "directories": [
+    "/Users/srsholmes/Work"
+  ]
+}
+```
+
+There may be some additional properties in the config file, but these are the main ones. These properties are used to configure certain aspects of Yal, and will be extended in the future.
 
 ## Accessibility Permissions
 

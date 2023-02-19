@@ -113,7 +113,7 @@ Yal gives you the ability to run full applications inside of Yal.
 
 ![Example of an App plugin](./apps/yal/resources/google-maps-example-app.png 'Example of an App plugin')
 
-Source code avaulable here: [Google Maps Plugin](https://github.com/srsholmes/yal-plugins/tree/main/plugins/google-maps)
+Source code available here: [Google Maps Plugin](https://github.com/srsholmes/yal-plugins/tree/main/plugins/google-maps)
 
 Applications can be written in vanilla JS or any framework (react / svelte etc) and will have full access to the Yal API.
 

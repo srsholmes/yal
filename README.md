@@ -83,7 +83,7 @@ The keywords array will tell Yal to only call the plugin after one of the keywor
 
 If no keywords are specified, the plugin will be run regardless of what word is typed into the search box. This can be very helpful if you want plugins to be available from the 'root' popup search window for example if you want to paste in a hex value to convert to different color formats.
 
-![Example of a root level plugin](./resources/root-level-plugin.png 'Example of a root level plugin')
+![Example of a root level plugin](./apps/yal/resources/color.png 'Example of a root level plugin')
 
 #### `debounce`: boolean | number
 
@@ -111,7 +111,7 @@ You will want to have `filter = false` when developing plugins which are going t
 
 Yal gives you the ability to run full applications inside of Yal.
 
-![Example of an App plugin](./resources/google-maps-example-app.png 'Example of an App plugin')
+![Example of an App plugin](./apps/yal/resources/google-maps-example-app.png 'Example of an App plugin')
 
 Source code avaulable here: [Google Maps Plugin](https://github.com/srsholmes/yal-plugins/tree/main/plugins/google-maps)
 
@@ -259,7 +259,7 @@ We're looking forward to seeing what the community comes up with.
 
 ## Themes
 
-![Example of themes in Yal](./resources/themes.png 'Example of themes')
+![Example of themes in Yal](./apps/yal/resources/themes.png 'Example of themes')
 
 Yal is completely themeable. You can see all available themes by searching for `themes` in Yal and selecting one.
 
@@ -304,7 +304,7 @@ In the future I want to offer themimg via CSS files.
 
 ## Accessibility Permissions
 
-Currently there is a bug where requested permissions for Yal do not work properly. In order to get permissions for Yal, you will need to go to `System Preferences > Privacy & Security > Accessibility` and add Yal to the list of apps that have access to accessibility.
+Currently there is a bug where requested permissions for Yal do not work properly. In order to get permissions for Yal, you will need to go to `System Preferences > Privacy & Security > Accessibility` and add Yal to the list of apps that have access to accessibility. If Yal is already in the list, remove Yal and add it again.
 
 ## Issues
 

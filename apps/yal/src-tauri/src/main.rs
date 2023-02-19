@@ -14,7 +14,7 @@ use tauri::{
 };
 use tauri::{GlobalShortcutManager, State};
 
-// use crate::accessibility::AppRequestAccessibilityState;
+use crate::accessibility::AppRequestAccessibilityState;
 use crate::hide_show_app::AppHiddenState;
 use crate::hide_show_app::DevModeState;
 use tauri_plugin_log::{LogTarget, LoggerBuilder};
@@ -63,6 +63,7 @@ fn main() {
 
     let mut app = tauri::Builder::default()
         .manage(AppHiddenState(true.into()))
+        .manage(accessibility::query_accessibility_permissions())
         .setup(move |app| {
             #[cfg(debug_assertions)]
             if config.dev_mode.enabled == true {

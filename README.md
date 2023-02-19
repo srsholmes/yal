@@ -10,6 +10,13 @@ Yal has been designed with the goal of being the simple, powerful and fast. With
 
 ## Install Yal
 
+Releases are coming soon, but for now you can install Yal by cloning this repo and running the following commands:
+
+```
+yarn
+```
+and then 
+
 ```
 yarn workspace @apps/yal prod:install
 ```

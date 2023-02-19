@@ -11,6 +11,7 @@ Yal has been designed with the goal of being the simple, powerful and fast. With
 ## Screenshot
 
 ![Yal Screenshot](./apps/yal/resources/web-plugin.png 'Yal Screenshot')
+![Yal Screenshot](./apps/yal/resources/react-plugin.png 'Yal React App Screenshot')
 
 ## Install Yal
 

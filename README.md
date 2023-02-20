@@ -128,7 +128,7 @@ You will want to have `filter = false` when developing plugins which are going t
 
 ## Plugin Actions
 
-Each item in a plugin result can have an optional `action` property which will be called when the user clicks on the item, or selects the item and presses the return key.
+A plugin result can have an optional `action` property which will be called when the user clicks on the item, or selects the item and presses the return key. The selected item will be passed to the action function.
 
 ```javascript
 const plugin = async (args) => {
@@ -138,14 +138,14 @@ const plugin = async (args) => {
       {
         name: 'This is the first result',
         description: 'This is the first result description',
-        action: async ({ item, pluginActions }: ActionArgs) => {
-          await yal.copyToClipboard(item.metadata.hello); // Copies 'world' to the clipboard
-        },
         metadata: {
           hello: 'world',
         },
       },
     ],
+    action: async ({ item, pluginActions }: ActionArgs) => {
+      await yal.copyToClipboard(item.metadata.hello); // Copies 'world' to the clipboard
+    },
   });
 };
 
@@ -428,7 +428,7 @@ Here is an example of a theme:
   "result-item-info-wrapper": "ml-4 flex-auto",
   "highlight": "bg-[#1F4661FF] group highlight",
   "result-item-name": "text-sm font-medium text-[#CDD6DB] group-[.highlight]:text-[#FFFFFF]",
-  "result-item-description": "overflow-hidden truncate text-sm text-[#606B70] group-[.highlight]:text-[#FFC600]",
+  "result-item-description": "overflow-hidden text-sm text-[#606B70] group-[.highlight]:text-[#FFC600]",
   "result-item-icon": "flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full",
   "result-item-app-wrapper": "relative rounded-b-md",
   "alert-wrapper": "h-full absolute w-full top-0 items-end flex justify-end",

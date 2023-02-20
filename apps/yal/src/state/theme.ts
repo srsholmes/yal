@@ -75,7 +75,7 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   'result-item-name':
     'text-sm font-medium text-[#ECEFF4] group-[.highlight]:text-[#ECEFF4]',
   'result-item-description':
-    'overflow-hidden truncate text-sm text-[#D8DEE9] group-[.highlight]:text-[#ECEFF4]',
+    'overflow-hidden text-sm text-[#D8DEE9] group-[.highlight]:text-[#ECEFF4]',
   'result-item-icon':
     'flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full',
   'result-item-app-wrapper': 'relative rounded-b-md',

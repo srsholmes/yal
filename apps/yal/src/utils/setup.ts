@@ -4,17 +4,16 @@ import { setAppsToStore } from 'state/apps';
 import { loadConfig } from 'state/config';
 import { setInputText } from 'state/input';
 import { setupPlugins } from 'state/plugins';
+import { watch } from 'tauri-plugin-fs-watch-api';
 import { getYalPath, YAL_DIR, YAL_DIR_PLUGINS } from 'utils/constants';
 import { exposeWindowProperties } from 'utils/plugin-actions';
-import { watch, watchImmediate } from 'tauri-plugin-fs-watch-api';
 
 import { invoke } from '@tauri-apps/api';
-import { setTemporaryTheme } from 'state/theme';
 import { preventAppHide } from 'state/misc';
+import { setTemporaryTheme } from 'state/theme';
 
 async function setupEventListeners() {
   await listen('tauri://blur', async () => {
-    console.log('blurred');
     if (preventAppHide() === true) {
       return;
     }

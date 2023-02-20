@@ -12,7 +12,7 @@
   "result-item-info-wrapper": "ml-4 flex-auto",
   "highlight": "bg-[#FF82AB] group highlight",
   "result-item-name": "text-sm font-medium text-[#CDD6DB] group-[.highlight]:text-[#FFFFFF]",
-  "result-item-description": "overflow-hidden truncate text-sm text-[#606B70] group-[.highlight]:text-[#fffff]",
+  "result-item-description": "overflow-hidden text-sm text-[#606B70] group-[.highlight]:text-[#fffff]",
   "result-item-icon": "flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full",
   "result-item-app-wrapper": "relative rounded-b-md",
   "alert-wrapper": "h-full absolute w-full top-0 items-end flex justify-end",

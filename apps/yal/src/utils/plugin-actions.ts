@@ -30,6 +30,7 @@ export const pluginActions: PluginActions = {
   process: index.process,
   shell: {
     run: async ({ binary, args }: { binary: string; args?: string[] }) => {
+      console.log('run', { binary, args });
       const path = await invoke<string>('which', { path: binary });
       if (path === '' || !path) {
         setToast({
@@ -47,6 +48,7 @@ export const pluginActions: PluginActions = {
     Command: index.shell.Command,
     shellCommand: async ({ path, args }: { path: string; args?: string[] }) => {
       // console.log('shellCommand', { path, args });
+      console.log('shellCommand', { path, args });
       const res = await new yal.shell.Command('shell', [
         '-c',
         `${path} ${args?.length > 0 ? args?.join(' ') : ''}`,

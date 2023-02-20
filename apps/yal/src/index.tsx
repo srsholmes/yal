@@ -5,7 +5,6 @@ import { Route, Router, Routes } from 'solid-app-router';
 import { render } from 'solid-js/web';
 import { handleKeydown } from 'utils/keyboard';
 import './app.css';
-import './styles/prism-one-dark.css';
 
 render(
   () => (

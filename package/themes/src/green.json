@@ -13,7 +13,7 @@
   "result-item-info-wrapper": "flex-auto",
   "highlight": "bg-[#35694B] group highlight",
   "result-item-name": "font-medium text-gray-400 group-[.highlight]:text-white text-lg",
-  "result-item-description": "overflow-hidden truncate text-gray-500 group-[.highlight]:text-white text-lg",
+  "result-item-description": "overflow-hidden text-gray-500 group-[.highlight]:text-white text-lg",
   "result-item-icon": "flex h-[50px] w-[50px] flex-none items-center justify-center overflow-hidden rounded-lg mr-5",
   "result-item-app-wrapper": "relative rounded-b-md",
   "alert-wrapper": "h-full absolute w-full top-0 items-end flex justify-end",

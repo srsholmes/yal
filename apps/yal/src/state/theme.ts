@@ -60,7 +60,7 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   'app-wrapper': 'bg-[#1B2C3F] text-lg',
   'main-wrapper': 'min-h-screen',
   'main-input':
-    'bg-[#1B2C3F] w-full p-3 text-white placeholder-white focus:ring-0 sm:text-sm',
+    'bg-[#1B2C3F] w-full p-3 block text-white placeholder-white focus:ring-0 sm:text-sm',
   'main-input-wrapper':
     'sticky bg-[#1B2C3F] top-0 mx-auto w-full transition-all grid items-center',
   'search-icon':

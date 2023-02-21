@@ -2,7 +2,7 @@
   "yal-wrapper": "flex flex-col h-screen bg-[#282828]",
   "app-wrapper": "bg-[#282828] text-lg",
   "main-wrapper": "min-h-screen",
-  "main-input": "bg-[#282828] w-full p-3 text-white placeholder-white focus:ring-0 sm:text-md",
+  "main-input": "bg-[#282828] w-full block p-3 text-white placeholder-white focus:ring-0 sm:text-md",
   "main-input-wrapper": "sticky bg-[#282828] top-0 mx-auto w-full transition-all grid items-center",
   "search-icon": "hidden opacity-100 pointer-events-none top-0.5 left-0.5 h-5 w-5 text-[#F5CF03] p-2 h-10 w-10",
   "result-heading": "px-3 py-2 text-md font-semibold text-[#D8DEE9]",

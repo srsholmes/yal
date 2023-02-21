@@ -3,7 +3,7 @@
   "yal-wrapper": "flex flex-col flex-grow h-[70vh] bg-[#131213]",
   "app-wrapper": "bg-[#131213] ",
   "main-wrapper": "min-h-[95px]",
-  "main-input": "bg-[#181818] sticky main-input z-30 h-20 text-white focus:ring-0 rounded-lg text-3xl w-full",
+  "main-input": "bg-[#181818] sticky block main-input z-30 h-20 text-white focus:ring-0 rounded-lg text-3xl w-full",
   "main-input-wrapper": "sticky top-0 mx-auto w-full transition-all items-center p-4 bg-[#131213]",
   "search-icon": "hidden opacity-100 pointer-events-none relative left-4 h-5 w-5 text-gray-400 z-10",
   "result-heading": "z-0 px-3 py-2.5 text-2xl font-semibold text-gray-200",

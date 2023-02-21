@@ -71,7 +71,7 @@ export type YalPlugin = (
   args: PluginArgs
 ) => void | Promise<void> | PluginResult | Promise<PluginResult>;
 
-export type YalReactAppPlugin = (args: PluginArgs) => { appNode: HTMLElement };
+export type YalAppPlugin = (args: PluginArgs) => { appNode: HTMLElement };
 
 type ActionArgs<T> = {
   setState: <T>(state: PluginResult<T>) => void;

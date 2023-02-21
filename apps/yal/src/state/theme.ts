@@ -150,7 +150,6 @@ function setDefaultTheme() {
 createEffect(async () => {
   const yalWrapper = document.getElementById('root');
   yalWrapper.className = '';
-  // document.body.className = 'animate-all';
 
   if (temporaryTheme()) {
     if (temporaryTheme() === DEFAULT_THEME_NAME) {
@@ -198,10 +197,6 @@ createEffect(async () => {
       return { ...prev, ...theme };
     });
   }
-  // Remove the animation class after 3 seconds.
-  // setTimeout(() => {
-  //   document.body.className = '';
-  // }, 3000);
 });
 
 export { tailwindClasses };

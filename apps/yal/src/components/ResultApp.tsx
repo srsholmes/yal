@@ -5,7 +5,7 @@ import { inputText, setInputText } from 'state/input';
 import {
   appendTailwindCSS,
   generateTailwindCSSFromHTML,
-  tailwindClasses
+  tailwindClasses,
 } from 'state/theme';
 import { setToast } from 'state/toast';
 import { ResultsProps } from 'types';
@@ -41,7 +41,8 @@ export function ResultApp(props: ResultsProps) {
   });
 
   async function generateCSS() {
-    const html = document.getElementById('app').innerHTML;
+    const html = document.getElementById('app')?.innerHTML;
+    if (!html) return;
     const { css } = await generateTailwindCSSFromHTML(html);
     appendTailwindCSS(css, 'tailwind-plugin-classes');
   }

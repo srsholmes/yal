@@ -53,6 +53,13 @@ fn main() {
         .into_os_string()
         .into_string()
         .unwrap();
+
+    // check if yal directory exists
+    if !std::path::Path::new(&format!("{}{}", home_dir_str, "/.yal")).exists() {
+        print!("creating .yal folder...");
+        std::fs::create_dir(format!("{}{}", home_dir_str, "/.yal")).unwrap();
+    }
+
     let config_path = format!("{}{}", home_dir_str, "/.yal/config.json");
 
     // check if config file exists
@@ -71,6 +78,8 @@ fn main() {
             theme: "yal-default".to_string(),
         };
         let config_json = serde_json::to_string_pretty(&config).unwrap();
+        print!("{}", config_json);
+        print!("writing config file");
         std::fs::write(&config_path, config_json).unwrap();
     }
 

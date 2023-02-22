@@ -11,6 +11,7 @@ import { exposeWindowProperties } from 'utils/plugin-actions';
 import { invoke } from '@tauri-apps/api';
 import { preventAppHide } from 'state/misc';
 import { setTemporaryTheme } from 'state/theme';
+import { trace, info, error, attachConsole } from 'tauri-plugin-log-api';
 
 async function setupEventListeners() {
   await listen('tauri://blur', async () => {
@@ -36,7 +37,15 @@ async function createConfigDirectory() {
   });
 }
 
+async function setupLogging() {
+  const detach = await attachConsole();
+  trace('Trace');
+  info('Info');
+  error('Error');
+}
+
 export async function setup() {
+  await setupLogging();
   await watchRoot();
   await exposeWindowProperties();
   await loadConfig();

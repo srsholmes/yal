@@ -17,7 +17,8 @@ use tauri::{GlobalShortcutManager, State};
 // use crate::accessibility::AppRequestAccessibilityState;
 use crate::hide_show_app::AppHiddenState;
 use crate::hide_show_app::DevModeState;
-// use tauri_plugin_log::{LogTarget};
+use tauri_plugin_log::LogTarget;
+use log::{trace, debug, info, warn, error};
 
 mod accessibility;
 mod app_icons;
@@ -46,6 +47,7 @@ fn is_dev_mode(state: tauri::State<DevModeState>) -> bool {
 }
 
 fn main() {
+   
     // Fix the path env, which is used to return the path to executable binaries for plugins.
     fix_path_env::fix();
     let home_dir_str = tauri::api::path::home_dir()
@@ -175,18 +177,11 @@ fn main() {
             which::which,
             is_dev_mode
         ])
-        // .plugin(
-        //     LoggerBuilder::new()
-        //         .targets([
-        //             // write to the OS logs folder
-        //             LogTarget::LogDir,
-        //             // // write to stdout
-        //             // LogTarget::Stdout,
-        //             // // forward logs to the webview
-        //             // LogTarget::Webview,
-        //         ])
-        //         .build(),
-        // )
+        .plugin(
+            tauri_plugin_log::Builder::default()
+                .targets([LogTarget::LogDir, LogTarget::Stdout, LogTarget::Webview])
+                .build(),
+        )
         .plugin(tauri_plugin_fs_watch::init())
         .build(tauri::generate_context!())
         .expect("error while building tauri application");
@@ -201,6 +196,11 @@ fn main() {
             app_handle_copy
                 .global_shortcut_manager()
                 .register("Cmd+Space", move || {
+                    trace!("A trace-level message");
+                    debug!("A debug-level message");
+                    info!("An info-level message");
+                    warn!("A warn-level message");
+                    error!("An error-level message");
                     // TODO: get the shortcut key from the config file
                     let app_hidden_state: State<AppHiddenState> = app_handle_copy.state();
                     let dev_mode_state: State<DevModeState> = app_handle_copy.state();

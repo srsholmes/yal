@@ -59,11 +59,32 @@
       "fs": {
         "all": true,
         "scope": [
-          "$APP/*",
-          "$HOME/*",
-          "$DOWNLOAD/*",
-          "$RESOURCE/*",
-          "$DESKTOP/*"
+          "$APP/**",
+          "$APPCACHE/**",
+          "$APPCONFIG/**",
+          "$APPDATA/**",
+          "$APPLOCALDATA/**",
+          "$APPLOG/**",
+          "$AUDIO/**",
+          "$CACHE/**",
+          "$CONFIG/**",
+          "$DATA/**",
+          "$DESKTOP/**",
+          "$DOCUMENT/**",
+          "$DOWNLOAD/**",
+          "$EXE/**",
+          "$FONT/**",
+          "$HOME/**",
+          "$HOME/.yal/**",
+          "$LOCALDATA/**",
+          "$LOG/**",
+          "$PICTURE/**",
+          "$PUBLIC/**",
+          "$RESOURCE/**",
+          "$RUNTIME/**",
+          "$TEMP./**",
+          "$TEMPLATE/**",
+          "$VIDEO/**"
         ]
       },
       "http": {

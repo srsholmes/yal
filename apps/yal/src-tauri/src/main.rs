@@ -17,7 +17,7 @@ use tauri::{GlobalShortcutManager, State};
 // use crate::accessibility::AppRequestAccessibilityState;
 use crate::hide_show_app::AppHiddenState;
 use crate::hide_show_app::DevModeState;
-use tauri_plugin_log::{LogTarget, LoggerBuilder};
+// use tauri_plugin_log::{LogTarget};
 
 mod accessibility;
 mod app_icons;
@@ -145,18 +145,18 @@ fn main() {
             which::which,
             is_dev_mode
         ])
-        .plugin(
-            LoggerBuilder::new()
-                .targets([
-                    // write to the OS logs folder
-                    LogTarget::LogDir,
-                    // // write to stdout
-                    // LogTarget::Stdout,
-                    // // forward logs to the webview
-                    // LogTarget::Webview,
-                ])
-                .build(),
-        )
+        // .plugin(
+        //     LoggerBuilder::new()
+        //         .targets([
+        //             // write to the OS logs folder
+        //             LogTarget::LogDir,
+        //             // // write to stdout
+        //             // LogTarget::Stdout,
+        //             // // forward logs to the webview
+        //             // LogTarget::Webview,
+        //         ])
+        //         .build(),
+        // )
         .plugin(tauri_plugin_fs_watch::init())
         .build(tauri::generate_context!())
         .expect("error while building tauri application");

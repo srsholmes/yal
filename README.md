@@ -17,13 +17,18 @@ Yal has been designed with the goal of being the simple, powerful and fast. With
 
 Releases are coming soon, but for now you can install Yal by cloning this repo and running the following commands:
 
-```
+```bash
 yarn
-```
 
+# install rust or update rust (depending on if you have it installed already)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Install
+
+rustup update # Update
+
+```
 and then
 
-```
+```bash
 yarn workspace @apps/yal prod:install
 ```
 

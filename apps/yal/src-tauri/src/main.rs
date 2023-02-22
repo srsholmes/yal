@@ -54,7 +54,28 @@ fn main() {
         .into_string()
         .unwrap();
     let config_path = format!("{}{}", home_dir_str, "/.yal/config.json");
+
+    // check if config file exists
+    if !std::path::Path::new(&config_path).exists() {
+        // create config file
+        let config = config::Config {
+            dev_mode: config::DevConfig {
+                enabled: false,
+                open_console_at_start: false,
+                window_title: "yal - dev mode".to_string(),
+                window_decorations: true,
+                window_open_on_current_screen: false,
+                console: true,
+                window_maximize: true,
+            },
+            theme: "yal-default".to_string(),
+        };
+        let config_json = serde_json::to_string_pretty(&config).unwrap();
+        std::fs::write(&config_path, config_json).unwrap();
+    }
+
     let config_file = std::fs::File::open(config_path).unwrap();
+
     let config: config::Config = serde_json::from_reader(config_file).unwrap();
     println!("dev_mode {}", config.dev_mode.enabled);
     // info!("******* RUST *********");

@@ -1,11 +1,5 @@
-import { ToastArgs, ToastType, YalToast } from '@yal-app/types';
+import { ToastArgs } from '@yal-app/types';
 import toast, { ToastOptions } from 'solid-toast';
-
-const test: YalToast = {
-  message: 'hello this is a really long test message',
-  level: 'error' as ToastType,
-  timer: null,
-};
 
 export const TOAST_TIMER = 7000;
 

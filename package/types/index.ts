@@ -5,6 +5,9 @@ declare global {
   const yal: PluginActions & { config: { pluginsPath: string } };
   interface Window {
     yal: PluginActions & {
+      toast: {
+        setToast: (args: ToastArgs) => typeof toast;
+      };
       config: { pluginsPath: string };
     };
   }

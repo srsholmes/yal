@@ -82,6 +82,9 @@ export async function exposeWindowProperties() {
     config: {
       pluginsPath: PLUGINS_PATH,
     },
+    toast: {
+      setToast: setToast,
+    },
     ...pluginActions,
   };
 }

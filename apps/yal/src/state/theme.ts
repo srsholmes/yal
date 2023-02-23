@@ -86,6 +86,23 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   error: 'bg-[#BF616A] group error',
   alert:
     'gap-4 grid text-[#FFFFFF] alert bottom-3 w-1/2 right-0 mt-3 transition-opacity ease-in-out duration-800 p-3 grid-cols-[auto_1fr]',
+  'markdown-wrapper': 'text-white',
+  'markdown-code': 'text-white',
+  'markdown-ol': 'text-white',
+  'markdown-blockquote': 'text-white',
+  'markdown-em': 'text-white',
+  'markdown-strong': 'text-white',
+  'markdown-del': 'text-white',
+  'markdown-hr': 'text-white',
+  'markdown-ul': 'text-white',
+  'markdown-list-item': 'text-white',
+  'markdown-h1': 'text-white',
+  'markdown-h2': 'text-white',
+  'markdown-h3': 'text-white',
+  'markdown-h4': 'text-white',
+  'markdown-h5': 'text-white',
+  'markdown-p': 'text-white',
+  'markdown-img': 'text-white',
 };
 
 const [tailwindClasses, setTailwindClasses] = createSignal(STYLABLE_ELEMENTS);

@@ -18,9 +18,12 @@ export type Icon = {
   type: string;
 };
 
+type ResultItemTextFormat = 'md';
+
 export type ResultLineItem<T = unknown> = {
   name?: string;
   description?: string;
+  format?: ResultItemTextFormat;
   icon?: string;
   appNode?: HTMLElement;
   metadata?: T;

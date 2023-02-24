@@ -110,7 +110,7 @@ export function Result(props: ResultsProps) {
 
   function handleResultClick(item: ResultLineItem) {
     return async (e) => {
-      if (item.format === 'md') return;
+      // if (item.format === 'md') return;
       e.preventDefault();
       await pluginState().action({
         item,
@@ -157,11 +157,10 @@ export function Result(props: ResultsProps) {
         </h2>
         <ul class={tailwindClasses()['results-wrapper']}>
           <For each={filteredResults()} fallback={null}>
-            {(resultItem, index) => (
+            {(resultItem) => (
               <li
                 onMouseEnter={(e) => {
                   if (resultItem.format === 'md') return;
-
                   handleHoverIn({
                     event: e,
                     item: resultItem,
@@ -170,7 +169,9 @@ export function Result(props: ResultsProps) {
                 }}
                 data-heading={pluginState().heading}
                 onClick={handleResultClick(resultItem)}
-                class={tailwindClasses()['result-item']}
+                class={`${tailwindClasses()['result-item']} ${
+                  resultItem.format === 'md' ? '' : 'cursor-pointer'
+                }`}
                 data-id="result-item"
               >
                 <ResultIcon
@@ -188,7 +189,6 @@ export function Result(props: ResultsProps) {
 }
 
 function ResultInfo({ resultItem }: { resultItem: ResultLineItem }) {
-  console.log({ resultItem });
   return (
     <div
       data-id="result-item-info-wrapper"
@@ -206,7 +206,7 @@ function ResultInfo({ resultItem }: { resultItem: ResultLineItem }) {
       >
         <Show
           when={resultItem.format === 'md'}
-          fallback={<span>{resultItem.description.trim()}</span>}
+          fallback={<span>{resultItem.description?.trim()}</span>}
         >
           <div>
             <Markdown resultItem={resultItem} />

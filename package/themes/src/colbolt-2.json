@@ -8,7 +8,7 @@
   "result-heading": "px-3 py-2 text-md font-semibold text-[#FFC600]",
   "results-wrapper": "",
   "results-wrapper-height": "overflow-scroll pb-10",
-  "result-item": "group mx-4 flex cursor-pointer select-none overflow-hidden p-3",
+  "result-item": "group mx-4 flex cursor-pointer  overflow-hidden p-3",
   "result-item-info-wrapper": "ml-4 flex-auto",
   "highlight": "bg-[#1F4661FF] group highlight",
   "result-item-name": "text-sm font-medium text-[#CDD6DB] group-[.highlight]:text-[#FFFFFF]",

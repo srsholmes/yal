@@ -9,7 +9,7 @@
   "result-heading": "z-0 px-3 py-2.5 text-2xl font-semibold text-gray-200",
   "results-wrapper": "divide-gray-500 divide-opacity-20 p-3",
   "results-wrapper-height": "overflow-scroll pb-10",
-  "result-item": "items-center group flex cursor-pointer select-none overflow-hidden p-3 rounded-lg",
+  "result-item": "items-center group flex cursor-pointer  overflow-hidden p-3 rounded-lg",
   "result-item-info-wrapper": "flex-auto",
   "highlight": "bg-[#35694B] group highlight",
   "result-item-name": "font-medium text-gray-400 group-[.highlight]:text-white text-lg",

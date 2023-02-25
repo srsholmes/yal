@@ -208,7 +208,7 @@ function ResultInfo({ resultItem }: { resultItem: ResultLineItem }) {
           when={resultItem.format === 'md'}
           fallback={<span>{resultItem.description?.trim()}</span>}
         >
-          <div>
+          <div class="flex justify-center">
             <Markdown resultItem={resultItem} />
           </div>
         </Show>

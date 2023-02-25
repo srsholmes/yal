@@ -1,9 +1,9 @@
 import { ResultLineItem } from '@yal-app/types';
+import rehypeRaw from 'rehype-raw';
+import remakrGfm from 'remark-gfm';
 import { children, createEffect } from 'solid-js';
 import SolidMarkdown from 'solid-markdown';
-import { config } from 'state/config';
 import { tailwindClasses } from 'state/theme';
-import { setToast } from 'state/toast';
 import { highlightAll } from 'utils/highlight';
 
 const componentMap = {
@@ -49,6 +49,18 @@ const componentMap = {
       </code>
     );
   },
+  table({ node, inline, className, children, ...props }) {
+    return (
+      <table
+        class={`${tailwindClasses()['markdown-table']} ${
+          className ? className : ''
+        }`}
+        {...props}
+      >
+        {children}
+      </table>
+    );
+  },
   h1({ node, inline, className, children, ...props }) {
     return <h1 class={tailwindClasses()['markdown-h1']}>{children}</h1>;
   },
@@ -80,7 +92,7 @@ const componentMap = {
   a({ node, inline, className, ...props }) {
     return (
       <a class={tailwindClasses()['markdown-a']} {...props}>
-        {children}
+        {props.children}
       </a>
     );
   },
@@ -94,6 +106,7 @@ export const Markdown = (props: { resultItem: ResultLineItem }) => {
   return (
     <div class="prose lg:prose-xl">
       <SolidMarkdown
+        rehypePlugins={[rehypeRaw, remakrGfm]}
         children={props.resultItem.description.trim()}
         components={componentMap}
       />

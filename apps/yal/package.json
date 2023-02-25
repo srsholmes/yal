@@ -51,6 +51,8 @@
     "json-formatter-js": "^2.3.4",
     "postcss": "^8.4.14",
     "prismjs": "^1.28.0",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
     "solid-app-router": "0.4.2",
     "solid-js": "^1.6.10",
     "solid-markdown": "1.2.0",

@@ -103,6 +103,8 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   'markdown-h5': 'text-blue-300',
   'markdown-h6': 'text-blue-300',
   'markdown-p': 'text-white',
+  'markdown-a': 'text-white',
+  'markdown-table': 'text-white',
   'markdown-img': 'max-w-full',
 };
 

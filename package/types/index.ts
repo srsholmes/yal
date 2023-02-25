@@ -1,5 +1,6 @@
 import { PluginActions } from './pluginActions';
 import toast from 'solid-toast';
+import Prism from 'prismjs';
 
 declare global {
   const yal: PluginActions & { config: { pluginsPath: string } };
@@ -7,6 +8,12 @@ declare global {
     yal: PluginActions & {
       toast: {
         setToast: (args: ToastArgs) => typeof toast;
+      };
+      throttle: (func: Function, time: number) => Function;
+      debounce: (func: Function, time: number) => Function;
+      Prism: typeof Prism;
+      code: {
+        highlightAll: () => Promise<void>;
       };
       config: { pluginsPath: string };
     };

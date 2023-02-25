@@ -1,17 +1,10 @@
 import { ResultLineItem } from '@yal-app/types';
 import { children, createEffect } from 'solid-js';
 import SolidMarkdown from 'solid-markdown';
-import { tailwindClasses } from 'state/theme';
-import Prism from 'prismjs';
 import { config } from 'state/config';
+import { tailwindClasses } from 'state/theme';
 import { setToast } from 'state/toast';
-
-const prismImportMap = {
-  typescript: () => import('prismjs/components/prism-typescript'),
-  javascript: () => import('prismjs/components/prism-javascript'),
-  html: () => import('prismjs/components/prism-markup'),
-  css: () => import('prismjs/components/prism-css'),
-};
+import { highlightAll } from 'utils/highlight';
 
 const componentMap = {
   ol({ node, inline, className, children, ...props }) {
@@ -95,31 +88,7 @@ const componentMap = {
 
 export const Markdown = (props: { resultItem: ResultLineItem }) => {
   createEffect(async () => {
-    const languages = ['typescript', 'javascript', 'html', 'css'];
-    await Promise.all([
-      import('prismjs/components/prism-markup'),
-      ...languages.map((lang) => prismImportMap[lang]()),
-    ]).then(() => {
-      Prism.highlightAll();
-    });
-  });
-
-  createEffect(() => {
-    const configJson = config();
-    if (configJson['code_theme']) {
-      import(`../styles/prism-themes/${configJson['code_theme']}.css`).catch(
-        (e) => {
-          setToast({
-            message: `Theme ${configJson['code_theme']} not found`,
-            type: 'error',
-          });
-        }
-      );
-    } else {
-      import('../styles/prism-themes/nord.css').then(() => {
-        console.log('gruvbox loaded');
-      });
-    }
+    await highlightAll();
   });
 
   return (

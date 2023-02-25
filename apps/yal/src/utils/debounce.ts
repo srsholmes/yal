@@ -11,5 +11,3 @@ export function debounce<T extends unknown[], U>(
     });
   };
 }
-
-window.debounce = debounce;

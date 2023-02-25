@@ -4,6 +4,10 @@ import { convertFileSrc, invoke } from '@tauri-apps/api/tauri';
 import { PluginActions } from '@yal-app/types';
 import { setPreventAppHide } from 'state/misc';
 import { setToast } from 'state/toast';
+import { debounce } from './debounce';
+import { throttle } from './throttle';
+import Prism from 'prismjs';
+import { highlightAll } from './highlight';
 
 export const pluginActions: PluginActions = {
   copyToClipboard: (text: string) => {
@@ -95,6 +99,13 @@ export async function exposeWindowProperties() {
     toast: {
       setToast: setToast,
     },
+    debounce,
+    throttle,
+    Prism: Prism,
+    code: {
+      highlightAll: highlightAll,
+    },
+    notification: pluginActions.notification,
     ...pluginActions,
   };
 }

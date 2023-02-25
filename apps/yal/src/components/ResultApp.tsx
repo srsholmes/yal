@@ -10,6 +10,7 @@ import {
 import { setToast } from 'state/toast';
 import { ResultsProps } from 'types';
 import { debounce as debounceFn } from 'utils/debounce';
+import { highlightAll } from 'utils/highlight';
 import { throttle } from 'utils/throttle';
 
 export function ResultApp(props: ResultsProps) {

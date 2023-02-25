@@ -44,7 +44,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@tauri-apps/api": "1.2.0",
-    "@yal-app/types": "0.0.18",
+    "@yal-app/types": "0.0.19",
     "dedent": "^0.7.0",
     "dexie": "^3.2.2",
     "fuzzysort": "^2.0.4",
@@ -56,7 +56,6 @@
     "solid-markdown": "1.2.0",
     "solid-toast": "0.4.0",
     "tailwindcss": "^3.2.6",
-    "@geoffcodesthings/tailwind-md-base": "1.1.0",
     "tauri-plugin-fs-watch-api": "https://github.com/tauri-apps/tauri-plugin-fs-watch",
     "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log#dev"
   }

@@ -112,7 +112,7 @@ export function Result(props: ResultsProps) {
     return async (e) => {
       // if (item.format === 'md') return;
       e.preventDefault();
-      await pluginState().action({
+      await pluginState().action?.({
         item,
         searchText: inputText(),
         setState,

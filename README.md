@@ -1,6 +1,6 @@
 # Yal
 
-<img align="left" style="margin-right: 10px;" src="./resources/logo-transparent.png" width="200" height="200">
+<img align="left" style="margin-right: 10px;" src="https://raw.githubusercontent.com/srsholmes/yal/develop/resources/logo-transparent.png" width="200" height="200">
 
 Yal (Yet Another Launcher) is a launcher app similar to Alfred, Raycast, ScriptKit, Spotlight, and many others. Yal is designed to provide users with a powerful and efficient way to launch applications and perform actions on Mac OS.
 
@@ -10,8 +10,8 @@ Yal has been designed with the goal of being the simple, powerful and fast. With
 
 ## Screenshots
 
-![Yal Screenshot](./apps/yal/resources/web-plugin.png 'Yal Screenshot')
-![Yal Screenshot](./apps/yal/resources/react-plugin.png 'Yal React App Screenshot')
+![Yal Screenshot](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/web-plugin.png 'Yal Screenshot')
+![Yal Screenshot](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/react-plugin.png 'Yal React App Screenshot')
 
 ## Install Yal
 
@@ -26,6 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # Install
 rustup update # Update
 
 ```
+
 and then
 
 ```bash
@@ -42,7 +43,7 @@ yarn dev
 
 Yal has dev tools enabled by default, in both production and development builds. This allows really quick development of new plugins with tools we are all familiar with. To open the dev tools, right click anywhere in the Yal window and select 'Inspect Element'.
 
-![Yal Screenshot With Dev tools](./apps/yal/resources/dev-tools-enabled.png 'Yal React App With Dev Tools Enabled')
+![Yal Screenshot With Dev tools](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/dev-tools-enabled.png 'Yal React App With Dev Tools Enabled')
 
 ## Plugins
 
@@ -107,7 +108,7 @@ The keywords array will tell Yal to only call the plugin after one of the keywor
 
 If no keywords are specified, the plugin will be run regardless of what word is typed into the search box. This can be very helpful if you want plugins to be available from the 'root' popup search window for example if you want to paste in a hex value to convert to different color formats.
 
-![Example of a root level plugin](./apps/yal/resources/color.png 'Example of a root level plugin')
+![Example of a root level plugin](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/color.png 'Example of a root level plugin')
 
 #### `debounce`: boolean | number
 
@@ -250,7 +251,7 @@ As you can see we have access to the entire Tauri API, as well as some additiona
 
 Yal gives you the ability to run full applications inside of Yal.
 
-![Example of an App plugin](./apps/yal/resources/google-maps-example-app.png 'Example of an App plugin')
+![Example of an App plugin](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/google-maps-example-app.png 'Example of an App plugin')
 
 Source code available here: [Google Maps Plugin](https://github.com/srsholmes/yal-plugins/tree/main/plugins/google-maps)
 
@@ -400,11 +401,11 @@ We're looking forward to seeing what the community comes up with.
 
 You can see all a list of currently installed plugins with keywords by searching for `plugins` in Yal.
 
-![See Installed plugins](./apps/yal/resources/plugins-installed.png 'See installed plugins')
+![See Installed plugins](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/plugins-installed.png 'See installed plugins')
 
 ## Themes
 
-![Example of themes in Yal](./apps/yal/resources/themes.png 'Example of themes')
+![Example of themes in Yal](https://raw.githubusercontent.com/srsholmes/yal/develop/apps/yal/resources/themes.png 'Example of themes')
 
 Yal is completely themeable. You can see all available themes by searching for `themes` in Yal and selecting one.
 

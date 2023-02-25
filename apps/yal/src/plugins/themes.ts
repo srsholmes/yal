@@ -1,10 +1,6 @@
 import { YalPlugin, YalPluginsConfig } from '@yal-app/types';
 import { updateConfig } from 'state/config';
-import {
-  setTemporaryTheme,
-  getAvailableThemes,
-  DEFAULT_THEME_NAME,
-} from 'state/theme';
+import { DEFAULT_THEME_NAME, getAvailableThemes } from 'state/theme';
 
 const themesPlugin: YalPlugin = async (args) => {
   const themes = await getAvailableThemes();

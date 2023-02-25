@@ -13,6 +13,7 @@ import { debounce as debounceFn } from 'utils/debounce';
 import { throttle } from 'utils/throttle';
 
 export function ResultApp(props: ResultsProps) {
+  console.log('props', props);
   const fn = unwrap(props.plugin);
   const pluginFn = props.debounce
     ? debounceFn(fn, typeof props.debounce === 'number' ? props.debounce : 500)

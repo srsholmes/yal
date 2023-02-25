@@ -9,12 +9,12 @@ export function Input() {
       class={tailwindClasses()['main-input-wrapper']}
     >
       <SearchIcon />
-      <textarea
+      <input
         class={tailwindClasses()['main-input']}
         data-id="main-input"
         value={inputText()}
         onInput={(e) => setInputText(e.currentTarget.value)}
-        // type="text"
+        type="text"
         placeholder="Search..."
         role="combobox"
         aria-expanded="false"

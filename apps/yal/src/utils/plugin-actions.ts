@@ -49,9 +49,19 @@ export const pluginActions: PluginActions = {
     shellCommand: async ({ path, args }: { path: string; args?: string[] }) => {
       // console.log('shellCommand', { path, args });
       console.log('shellCommand', { path, args });
+
+      // if any of the args have spaces, wrap them in quotes
+      const argsWithQuotes = args?.map((arg) => {
+        if (arg.includes(' ')) {
+          return `"${arg}"`;
+        }
+        return arg;
+      });
+
+      console.log('argsWithQuotes', argsWithQuotes);
       const res = await new yal.shell.Command('shell', [
         '-c',
-        `${path} ${args?.length > 0 ? args?.join(' ') : ''}`,
+        `${path} ${args?.length > 0 ? argsWithQuotes.join(' ') : ''}`,
       ]).execute();
       // console.log({ res });
       // console.log('res.stdout', res.stdout);

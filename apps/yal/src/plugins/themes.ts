@@ -14,9 +14,6 @@ const themesPlugin: YalPlugin = async (args) => {
     action: async (result) => {
       await updateConfig({ theme: result.item.name }, true);
     },
-    focus: async (result) => {
-      await setTemporaryTheme(result.item.name);
-    },
     state: [
       {
         icon: 'folder-theme',

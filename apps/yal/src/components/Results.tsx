@@ -41,7 +41,7 @@ export function Results() {
           </Match>
           <Match when={hasKeyword() && isApp()}>
             <ResultApp
-              pluginName={firstWord()}
+              pluginName={plugins?.keyword?.[firstWord()]?.pluginName}
               index={0}
               type="keyword"
               plugin={plugins?.keyword?.[firstWord()]?.plugin}

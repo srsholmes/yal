@@ -13,6 +13,7 @@ import { debounce as debounceFn } from 'utils/debounce';
 import { filterResults } from 'utils/filter-results';
 import { pluginActions } from 'utils/plugin-actions';
 import { throttle } from 'utils/throttle';
+import { Markdown } from 'components/Markdown';
 
 export function Result(props: ResultsProps) {
   const fn = unwrap(props.plugin);
@@ -109,6 +110,7 @@ export function Result(props: ResultsProps) {
 
   function handleResultClick(item: ResultLineItem) {
     return async (e) => {
+      // if (item.format === 'md') return;
       e.preventDefault();
       await pluginState().action({
         item,
@@ -117,7 +119,6 @@ export function Result(props: ResultsProps) {
         pluginActions,
       });
 
-      console.log('CLICK', props.keepOpen);
       if (!props.keepOpen === true) {
         setInputText('');
         await invoke('app_hide_show', { forceHide: true });
@@ -156,18 +157,21 @@ export function Result(props: ResultsProps) {
         </h2>
         <ul class={tailwindClasses()['results-wrapper']}>
           <For each={filteredResults()} fallback={null}>
-            {(resultItem, index) => (
+            {(resultItem) => (
               <li
-                onMouseEnter={(e) =>
+                onMouseEnter={(e) => {
+                  if (resultItem.format === 'md') return;
                   handleHoverIn({
                     event: e,
                     item: resultItem,
                     result: pluginState(),
-                  })
-                }
+                  });
+                }}
                 data-heading={pluginState().heading}
                 onClick={handleResultClick(resultItem)}
-                class={tailwindClasses()['result-item']}
+                class={`${tailwindClasses()['result-item']} ${
+                  resultItem.format === 'md' ? '' : 'cursor-pointer'
+                }`}
                 data-id="result-item"
               >
                 <ResultIcon
@@ -196,12 +200,23 @@ function ResultInfo({ resultItem }: { resultItem: ResultLineItem }) {
       >
         {resultItem.name}
       </p>
-      <p
+      <div
         data-id="result-item-info-description"
         class={tailwindClasses()['result-item-description']}
       >
-        {resultItem.description}
-      </p>
+        <Show
+          when={resultItem.format === 'md'}
+          fallback={<span>{resultItem.description?.trim()}</span>}
+        >
+          <div>
+            <Markdown resultItem={resultItem} />
+          </div>
+        </Show>
+      </div>
+      <p
+        data-id="result-item-info-description"
+        class={tailwindClasses()['result-item-description']}
+      ></p>
     </div>
   );
 }

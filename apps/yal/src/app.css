@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 * {
   border: 0;
 }
@@ -18,9 +17,4 @@ body.animate-all * {
 html {
   overflow: hidden;
   height: 100%;
-}
-
-body {
-  /* height: 100vh; */
-  /* overflow: auto; */
 }

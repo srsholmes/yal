@@ -9,7 +9,7 @@
   "result-heading": "px-3 py-2 text-sm font-semibold text-[#D8DEE9]",
   "results-wrapper": "",
   "results-wrapper-height": "overflow-scroll pb-10",
-  "result-item": "group mx-4 flex cursor-pointer select-none overflow-hidden p-3",
+  "result-item": "group mx-4 flex cursor-pointer  overflow-hidden p-3",
   "result-item-info-wrapper": "ml-4 flex-auto",
   "highlight": "bg-[#81A1C1] group highlight",
   "result-item-name": "text-sm font-medium font-['Source Code Pro'] text-[#ECEFF4] group-[.highlight]:text-[#ECEFF4]",

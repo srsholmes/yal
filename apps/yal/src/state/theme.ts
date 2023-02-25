@@ -68,8 +68,7 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   'result-heading': 'px-3 py-2 text-sm font-semibold text-[#D8DEE9]',
   'results-wrapper': '',
   'results-wrapper-height': 'overflow-scroll pb-10',
-  'result-item':
-    'group mx-4 flex cursor-pointer select-none overflow-hidden p-3',
+  'result-item': 'group mx-4 flex overflow-hidden p-3',
   'result-item-info-wrapper': 'ml-4 flex-auto',
   highlight: 'bg-[#81A1C1] group highlight',
   'result-item-name':
@@ -86,6 +85,25 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   error: 'bg-[#BF616A] group error',
   alert:
     'gap-4 grid text-[#FFFFFF] alert bottom-3 w-1/2 right-0 mt-3 transition-opacity ease-in-out duration-800 p-3 grid-cols-[auto_1fr]',
+  'markdown-wrapper': 'text-white',
+  'markdown-code': 'text-white',
+  'markdown-ol': 'text-white',
+  'markdown-hr': 'h-px my-8 bg-gray-200 border-0 dark:bg-gray-700',
+  'markdown-blockquote':
+    'p-4 my-4 border-l-4 border-white dark:border-gray-500 bg-gray-800',
+  'markdown-em': 'text-white',
+  'markdown-strong': 'text-white',
+  'markdown-del': 'text-white',
+  'markdown-ul': 'text-white',
+  'markdown-list-item': 'text-white',
+  'markdown-h1': 'text-blue-300',
+  'markdown-h2': 'text-blue-300',
+  'markdown-h3': 'text-blue-300',
+  'markdown-h4': 'text-blue-300',
+  'markdown-h5': 'text-blue-300',
+  'markdown-h6': 'text-blue-300',
+  'markdown-p': 'text-white',
+  'markdown-img': 'max-w-full',
 };
 
 const [tailwindClasses, setTailwindClasses] = createSignal(STYLABLE_ELEMENTS);

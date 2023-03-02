@@ -10,6 +10,7 @@ import {
   RETURN_KEY_CODE,
 } from 'utils/constants';
 import { pluginActions } from 'utils/plugin-actions';
+import { isAppPluginActive } from 'state/misc';
 
 export const disableMouseOnResults = () => {
   const results = document.querySelectorAll<HTMLElement>(
@@ -28,6 +29,10 @@ export const enableMouseOnResults = () => {
 export const handleKeydown =
   (appWindow: WindowManager) =>
   async (event: KeyboardEvent): Promise<void> => {
+    if (isAppPluginActive() === true) {
+      return;
+    }
+
     const highlightClasses = tailwindClasses()['highlight'].split(' ');
     disableMouseOnResults();
     if (event.code === ESCAPE_KEY_CODE || event.key === ESCAPE_KEY_CODE) {
@@ -62,7 +67,7 @@ export const handleKeydown =
         pluginActions,
         store: resultsState[heading].store,
       });
-      
+
       if (!resultsState[heading].keepOpen) {
         setInputText('');
         await invoke('app_hide_show', { forceHide: true });

@@ -6,4 +6,14 @@ const [isAppReady, setIsAppReady] = appReady;
 const shouldPreventAppHide = createSignal(false);
 const [preventAppHide, setPreventAppHide] = shouldPreventAppHide;
 
-export { isAppReady, setIsAppReady, preventAppHide, setPreventAppHide };
+const appPluginActive = createSignal(false);
+const [isAppPluginActive, setIsAppPluginActive] = appPluginActive;
+
+export {
+  isAppReady,
+  setIsAppReady,
+  preventAppHide,
+  setPreventAppHide,
+  isAppPluginActive,
+  setIsAppPluginActive,
+};

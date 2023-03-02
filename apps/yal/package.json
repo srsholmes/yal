@@ -25,6 +25,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/prismjs": "1.26.0",
     "@tauri-apps/cli": "^1.2.3",
     "@types/node": "^18.0.0",
     "autoprefixer": "^10.4.7",

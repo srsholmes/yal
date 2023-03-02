@@ -1,7 +1,8 @@
-import { createEffect } from 'solid-js';
+import { createEffect, onCleanup, onMount } from 'solid-js';
 import { unwrap } from 'solid-js/store';
 import { apps } from 'state/apps';
 import { inputText, setInputText } from 'state/input';
+import { setIsAppPluginActive } from 'state/misc';
 import {
   appendTailwindCSS,
   generateTailwindCSSFromHTML,
@@ -62,6 +63,14 @@ export function ResultApp(props: ResultsProps) {
       childList: true,
       subtree: true,
     });
+  });
+
+  onMount(() => {
+    setIsAppPluginActive(true);
+  });
+
+  onCleanup(() => {
+    setIsAppPluginActive(false);
   });
 
   return (

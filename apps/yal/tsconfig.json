@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -11,8 +12,6 @@
     "noEmit": true,
     "isolatedModules": true,
     "baseUrl": "./src",
-    "lib": [
-      "es2020", "esnext", "dom"
-    ],
+    "lib": ["es2020", "esnext", "dom"]
   }
 }

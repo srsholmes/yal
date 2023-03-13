@@ -3,8 +3,9 @@ import type { PluginArgs, YalPluginsConfig } from '@yal-app/types';
 import { YalPlugin } from '@yal-app/types';
 import { config as appConfig } from 'state/config';
 import { setToast } from 'state/toast';
+import toast from 'solid-toast';
 
-let toast = null;
+let myToast: typeof toast | null = null;
 
 async function search(args: PluginArgs) {
   const c = appConfig();
@@ -17,23 +18,25 @@ async function search(args: PluginArgs) {
     await path.videoDir(),
   ];
 
-  if (toast === null) {
-    toast = setToast({ message: 'Search for files...', type: 'loading' });
+  if (myToast === null) {
+    myToast = setToast({ message: 'Search for files...', type: 'loading' });
   }
   if (args.text === '') return [];
 
   const command = yal.shell.Command.sidecar('bin/fd', [
     args.text,
     ...paths,
-    ...(Array.isArray(c?.directories) ? c.directories : []),
+    ...(Array.isArray(c?.directories) && c?.directories != null
+      ? c.directories
+      : []),
     '_E',
     '/node_mdoules/',
   ]);
 
   const output = await command.execute();
 
-  toast?.dismiss();
-  toast = null;
+  myToast?.dismiss();
+  myToast = null;
 
   return output.stdout
     .split('\n')
@@ -52,7 +55,9 @@ export const fileSearchPlugin: YalPlugin = async (args) => {
   args.setState({
     heading: `File Search`,
     action: (result) => {
-      yal.shell.open({ path: result.item.description });
+      if (result.item.description) {
+        yal.shell.open({ path: result.item.description });
+      }
     },
     state: await search(args),
   });

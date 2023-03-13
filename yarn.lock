@@ -693,6 +693,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/dedent@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@types/dedent/-/dedent-0.7.0.tgz#155f339ca404e6dd90b9ce46a3f78fd69ca9b050"
+  integrity sha512-EGlKlgMhnLt/cM4DbUSafFdrkeJoC9Mvnj0PUCU7tFmTjMjNRT957kXCx0wYm3JuEq4o4ZsS5vG+NlkM2DMd2A==
+
 "@types/hast@^2.0.0":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@types/hast/-/hast-2.3.4.tgz#8aa5ef92c117d20d974a82bdfb6a648b08c0bafc"
@@ -787,14 +792,6 @@
   dependencies:
     "@typescript-eslint/types" "5.42.1"
     eslint-visitor-keys "^3.3.0"
-
-"@yal-app/types@0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@yal-app/types/-/types-0.0.19.tgz#12f03d21d2fd2ae1a698e8fc7c4bd670c69bd2b8"
-  integrity sha512-v2CaH84pImykGQ23dvuGg8DWo3q3QI5yu0X30eKY8B/9RQVdyyG1P3eva2XDc/OL5xYgAr86YbcB5DRXg1qLjA==
-  dependencies:
-    "@tauri-apps/api" "1.2.0"
-    solid-toast "0.4.0"
 
 acorn-node@^1.8.2:
   version "1.8.2"

@@ -1458,7 +1458,7 @@ export const fileIcons = {
 
 export const fileIconMap = fileIcons.icons.reduce((acc, curr) => {
   const { name, fileExtensions } = curr;
-  const obj = {};
+  const obj: Record<string, string> = {};
   fileExtensions?.forEach((ext) => {
     obj[ext] = name;
   });
@@ -1466,4 +1466,4 @@ export const fileIconMap = fileIcons.icons.reduce((acc, curr) => {
     ...acc,
     ...obj,
   };
-}, {});
+}, {} as Record<string, string>);

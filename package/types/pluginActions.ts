@@ -61,7 +61,7 @@ export type PluginActions = {
     }: {
       binary: string;
       args?: string[];
-    }) => Promise<index.shell.ChildProcess>;
+    }) => Promise<index.shell.ChildProcess | void>;
     shellCommand: YalCommand;
     open: YalCommand;
     appleScript: ({ command }: { command: string }) => Promise<void>;

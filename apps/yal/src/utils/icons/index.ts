@@ -6,7 +6,6 @@ import { folderIconMap } from 'utils/icons/folder-icons';
 
 export function extractIconFromPath(x: string): string {
   const last = x.split('/').slice(-1)[0];
-  let svgIcon = null;
   if (last.includes('.')) {
     const icon =
       fileIconMap[last] ?? fileIconMap[last.split('.').slice(-1)[0]] ?? 'file';

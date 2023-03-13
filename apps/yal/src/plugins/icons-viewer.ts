@@ -6,8 +6,10 @@ export const getIcons: YalPlugin = async (args) => {
     heading: `Available Icons`,
     state: icons,
     action: async ({ item }) => {
-      await yal.copyToClipboard(item.name);
-      await yal.notification.sendNotification('Copied to clipboard!');
+      if (item.name) {
+        await yal.copyToClipboard(item.name);
+        await yal.notification.sendNotification('Copied to clipboard!');
+      }
     },
   });
 };

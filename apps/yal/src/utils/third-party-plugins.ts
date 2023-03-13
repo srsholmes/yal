@@ -102,6 +102,11 @@ export async function loadThirdPartyPlugins(): Promise<{
             pluginsWithKeywordsMap[plugin.config?.keywords] = {
               plugin: plugin.default,
               pluginName: name,
+              filter: false,
+              debounce: false,
+              throttle: false,
+              isApp: false,
+              keepOpen: false,
             };
 
             CONFIG_KEYS.forEach((configOption) => {
@@ -117,6 +122,11 @@ export async function loadThirdPartyPlugins(): Promise<{
               pluginsWithKeywordsMap[keyword] = {
                 plugin: plugin.default,
                 pluginName: name,
+                filter: false,
+                debounce: false,
+                throttle: false,
+                isApp: false,
+                keepOpen: false,
               };
 
               CONFIG_KEYS.forEach((configOption) => {
@@ -132,6 +142,12 @@ export async function loadThirdPartyPlugins(): Promise<{
         } else {
           pluginsMap[name] = {
             plugin: plugin.default,
+            filter: false,
+            debounce: false,
+            throttle: false,
+            isApp: false,
+            keepOpen: false,
+            pluginName: name,
           };
 
           CONFIG_KEYS.forEach((configOption) => {
@@ -161,4 +177,8 @@ export async function loadPlugins() {
     console.log({ plugins });
     return plugins;
   }
+  return {
+    pluginsMap: {},
+    pluginsWithKeywordsMap: {},
+  };
 }

@@ -2,7 +2,6 @@ import { invoke } from '@tauri-apps/api';
 import type { WindowManager } from '@tauri-apps/api/window';
 import { setInputText } from 'state/input';
 import { results } from 'state/results';
-import { tailwindClasses } from 'state/theme';
 import {
   ARROW_DOWN_KEY_CODE,
   ARROW_UP_KEY_CODE,
@@ -33,7 +32,6 @@ export const handleKeydown =
       return;
     }
 
-    const highlightClasses = tailwindClasses()['highlight'].split(' ');
     disableMouseOnResults();
     if (event.code === ESCAPE_KEY_CODE || event.key === ESCAPE_KEY_CODE) {
       event.preventDefault();
@@ -51,21 +49,23 @@ export const handleKeydown =
       const highlight = Array.from(resultItems).find((x) =>
         x.classList.contains('highlight')
       );
-      const index = Array.from(highlight.parentNode.children).findIndex(
+      const index = Array.from(highlight?.parentNode?.children || []).findIndex(
         (node) => node === highlight
       );
-      const headingNode = highlight.parentNode.parentNode.querySelector(
+      const headingNode = highlight?.parentNode?.parentNode?.querySelector(
         '[data-id="result-heading"]'
       );
 
-      const heading = headingNode.getAttribute('data-plugin-name');
+      const heading = headingNode?.getAttribute('data-plugin-name');
       const resultsState = results();
+      if (!heading) return;
+
       const result = resultsState[heading].state()[index];
 
       resultsState[heading].action?.({
         item: result,
         pluginActions,
-        store: resultsState[heading].store,
+        setState: resultsState[heading].setState,
       });
 
       if (!resultsState[heading].keepOpen) {

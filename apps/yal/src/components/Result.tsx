@@ -37,10 +37,12 @@ export function Result(props: ResultsProps) {
       state: Array.isArray(pluginState.state)
         ? pluginState.state
         : [pluginState.state],
-    });
+    } as PluginResultInternal);
   }
 
-  function setGlobalResults(pluginResult) {
+  function setGlobalResults(pluginResult: PluginResult) {
+    // TODO: Fix this.
+    // @ts-ignore
     setResults((prev) => {
       return {
         ...prev,
@@ -49,7 +51,7 @@ export function Result(props: ResultsProps) {
           focus: pluginResult.focus,
           state: filteredResults,
           setState: setStateFromPlugin,
-          keepOpen: props.keepOpen,
+          keepOpen: props.keepOpen ?? false,
         },
       };
     });
@@ -59,6 +61,8 @@ export function Result(props: ResultsProps) {
     const pluginResult = await pluginFn({
       pluginPath: `${yal.config.pluginsPath}/${props.pluginName}`,
       text: searchTerm(),
+      // TODO: Fix this.
+      // @ts-ignore
       setState: (pluginResult: PluginResult) => {
         setStateFromPlugin(pluginResult);
         setGlobalResults(pluginResult);
@@ -104,13 +108,14 @@ export function Result(props: ResultsProps) {
       items: pluginState().state,
       searchTerm: searchTerm(),
       type: props.type,
-      filter: props.filter,
+      filter: props.filter ?? false,
     });
   }
 
   function handleResultClick(item: ResultLineItem) {
-    return async (e) => {
+    return async (e: Event) => {
       // if (item.format === 'md') return;
+      console.log({ item, e, props });
       e.preventDefault();
       await pluginState().action?.({
         item,
@@ -120,6 +125,7 @@ export function Result(props: ResultsProps) {
       });
 
       if (!props.keepOpen === true) {
+        await Promise.resolve(); // Wait for DOM to render.
         setInputText('');
         await invoke('app_hide_show', { forceHide: true });
       }

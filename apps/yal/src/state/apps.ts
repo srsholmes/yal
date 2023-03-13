@@ -3,7 +3,7 @@ import { addAppsToDB, clearDB, getAppsFromDB } from 'utils/db';
 import { invoke } from '@tauri-apps/api';
 import { AppEntry } from '@yal-app/types';
 
-export type AppEntries = AppEntry[] | null;
+export type AppEntries = AppEntry[];
 export const appsStore = createSignal<AppEntries>([]);
 
 const [apps, setApps] = appsStore;

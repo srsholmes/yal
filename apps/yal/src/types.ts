@@ -9,16 +9,16 @@ export type YalPluginsMap = {
   [key: string]: Omit<ResultsProps, 'index' | 'type'>;
 };
 
-export type ResultsProps = {
+export type ResultsProps<T = unknown> = {
   index: number;
   plugin: YalPlugin;
   type: 'plugin' | 'keyword';
-  pluginName?: string;
-  filter?: YalPluginsConfig['filter'];
-  debounce?: YalPluginsConfig['debounce'];
-  throttle?: YalPluginsConfig['throttle'];
-  isApp?: YalPluginsConfig['isApp'];
-  keepOpen?: YalPluginsConfig['keepOpen'];
+  pluginName: string;
+  filter: Required<YalPluginsConfig['filter']>;
+  debounce: Required<YalPluginsConfig['debounce']>;
+  throttle: Required<YalPluginsConfig['throttle']>;
+  isApp: Required<YalPluginsConfig['isApp']>;
+  keepOpen: Required<YalPluginsConfig['keepOpen']>;
 };
 
 export type YalThirdPartyPluginModule = {
@@ -27,7 +27,7 @@ export type YalThirdPartyPluginModule = {
 };
 
 export type PluginResultInternal = PluginResult & {
-  state?: ResultLineItem[];
+  state: ResultLineItem[];
 };
 
 // declare global window type

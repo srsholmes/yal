@@ -602,7 +602,7 @@ export const folderIcons = {
 
 export const folderIconMap = folderIcons.icons.reduce((acc, curr) => {
   const { name, folderNames } = curr;
-  const obj = {};
+  const obj: Record<string, string> = {};
   folderNames?.forEach((ext) => {
     obj[ext] = name;
   });
@@ -610,4 +610,4 @@ export const folderIconMap = folderIcons.icons.reduce((acc, curr) => {
     ...acc,
     ...obj,
   };
-}, {});
+}, {} as Record<string, string>);

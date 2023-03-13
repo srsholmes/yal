@@ -7,20 +7,19 @@ import getKeywords, * as getKeywordsPlugin from 'plugins/keywords';
 import * as reloadPlugin from 'plugins/reload';
 import * as reindexPlugin from 'plugins/reindex-apps';
 import * as getIconsPlugin from 'plugins/icons-viewer';
-import * as testAppPlugin from 'plugins/app-test';
 import * as configPlugin from 'plugins/config';
 import * as themesPlugin from 'plugins/themes';
 import * as themesTestPlugin from 'plugins/theme-tester';
 import * as fileSearchPlugin from 'plugins/file-search';
 import * as toastTestPlugin from 'plugins/toast-tester';
 import * as testPlugin from 'plugins/tester';
+import { YalPluginsConfig } from '@yal-app/types';
 
 const BUILT_IN_KEYWORD_PLUGINS = [
   getKeywordsPlugin,
   reloadPlugin,
   reindexPlugin,
   getIconsPlugin,
-  testAppPlugin,
   configPlugin,
   themesPlugin,
   themesTestPlugin,
@@ -28,6 +27,15 @@ const BUILT_IN_KEYWORD_PLUGINS = [
   toastTestPlugin,
   testPlugin,
 ] as YalThirdPartyPluginModule[];
+
+const DEFAULT_CONFIG: Required<YalPluginsConfig> = {
+  keywords: [],
+  filter: false,
+  debounce: false,
+  throttle: false,
+  isApp: false,
+  keepOpen: false,
+};
 
 const builtInKeywordPlugins = BUILT_IN_KEYWORD_PLUGINS.reduce((acc, curr) => {
   if (curr?.config?.keywords) {
@@ -38,21 +46,24 @@ const builtInKeywordPlugins = BUILT_IN_KEYWORD_PLUGINS.reduce((acc, curr) => {
       acc[keyword] = {
         plugin: curr.default,
         pluginName: curr.default.name,
-        filter: curr.config.filter,
-        isApp: curr.config.isApp,
-        throttle: curr.config.throttle,
-        debounce: curr.config.debounce,
-        keepOpen: curr.config.keepOpen,
+        filter: curr.config?.filter,
+        isApp: curr.config?.isApp,
+        throttle: curr.config?.throttle,
+        debounce: curr.config?.debounce,
+        keepOpen: curr.config?.keepOpen,
       };
     });
     return acc;
   }
   return acc;
-}, {});
+}, {} as YalPluginsMap);
 
-export type PluginsState = AllPlugins | null;
+export type PluginsState = AllPlugins;
 
-export const pluginsStore = createStore<PluginsState>(null);
+export const pluginsStore = createStore<PluginsState>({
+  yal: {},
+  keyword: {},
+});
 const [plugins, setPlugins] = pluginsStore;
 
 export { plugins, setPlugins };
@@ -62,13 +73,19 @@ export type AllPlugins = {
   keyword: YalPluginsMap;
 };
 
-const BASE_PLUGINS = {
+const BASE_PLUGINS: AllPlugins = {
   yal: {
     apps: {
+      pluginName: 'apps',
       plugin: appsPlugin,
+      ...DEFAULT_CONFIG,
+      filter: true,
     },
     system: {
+      pluginName: 'system',
       plugin: systemPlugin,
+      ...DEFAULT_CONFIG,
+      filter: true,
     },
   },
   keyword: builtInKeywordPlugins,
@@ -87,6 +104,10 @@ export async function setupPlugins() {
         ...prev.keyword,
         plugins: {
           plugin: getKeywords(thirdPartyPlugins),
+          ...DEFAULT_CONFIG,
+          pluginName: 'plugins',
+          filter: true,
+          keepOpen: true,
         },
         ...thirdPartyPlugins.pluginsWithKeywordsMap,
       },

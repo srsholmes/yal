@@ -11,3 +11,5 @@ export function debounce<T extends unknown[], U>(
     });
   };
 }
+
+export type debounceType = typeof debounce;

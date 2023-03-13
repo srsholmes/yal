@@ -17,9 +17,9 @@ export async function getAvailableThemes(): Promise<string[]> {
     dir: BaseDirectory.Home,
   });
   const themes = themesDir
-    .filter((x) => x.name.endsWith('.json'))
-    .map((t) => t.name);
-  return themes;
+    .filter((x) => x?.name?.endsWith('.json'))
+    .map((t) => t.name || 'Name Unavailable');
+  return themes || [];
 }
 
 const tailwind = createTailwindcss({
@@ -108,7 +108,10 @@ const STYLABLE_ELEMENTS = /*tw*/ {
   'markdown-img': 'max-w-full',
 };
 
-const [tailwindClasses, setTailwindClasses] = createSignal(STYLABLE_ELEMENTS);
+type StyleableElements = typeof STYLABLE_ELEMENTS;
+
+const [tailwindClasses, setTailwindClasses] =
+  createSignal<StyleableElements>(STYLABLE_ELEMENTS);
 
 async function getThemeJson(path: string) {
   const res = await yal.fs.readTextFile(path);
@@ -120,10 +123,6 @@ async function getThemeJson(path: string) {
   }
   return json;
 }
-
-const [temporaryTheme, setTemporaryTheme] = createSignal<string | null>(null);
-
-export { temporaryTheme, setTemporaryTheme };
 
 export function appendTailwindCSS(css: string, id = 'tailwind-theme-classes') {
   const existing = document.getElementById(id);
@@ -137,7 +136,13 @@ export function appendTailwindCSS(css: string, id = 'tailwind-theme-classes') {
   document.head.appendChild(style);
 }
 
-function setNewHighlight({ prev, theme }) {
+function setNewHighlight({
+  prev,
+  theme,
+}: {
+  prev: StyleableElements;
+  theme: StyleableElements;
+}) {
   const resultItems = document.querySelectorAll('[data-id="result-item"]');
   const indexOfHighlight = Array.from(resultItems).findIndex((x) =>
     x.classList.contains('highlight')
@@ -169,37 +174,17 @@ function setDefaultTheme() {
 
 createEffect(async () => {
   const yalWrapper = document.getElementById('root');
+  if (!yalWrapper) {
+    throw new Error('yal-wrapper not found');
+  }
   yalWrapper.className = '';
 
-  if (temporaryTheme()) {
-    if (temporaryTheme() === DEFAULT_THEME_NAME) {
+  if (typeof config()?.theme === 'string') {
+    if (config()?.theme === DEFAULT_THEME_NAME) {
       setDefaultTheme();
       return;
     }
-
-    const themePath = await getThemePath(temporaryTheme());
-    const theme = await getThemeJson(themePath);
-    const { css } = await generateTailwindCSSFromTheme(theme);
-    if (theme.hasOwnProperty('fonts')) {
-      window.WebFont.load({
-        google: {
-          families: theme['fonts'],
-        },
-      });
-    }
-    appendTailwindCSS(css);
-    setTailwindClasses((prev) => {
-      const obj = { ...prev, ...theme };
-      setNewHighlight({ prev, theme });
-      yalWrapper?.classList.add(...obj['yal-wrapper'].split(' '));
-      return { ...prev, ...theme };
-    });
-  } else if (typeof config()?.theme === 'string') {
-    if (config().theme === DEFAULT_THEME_NAME) {
-      setDefaultTheme();
-      return;
-    }
-    const themePath = await getThemePath(config().theme as string);
+    const themePath = await getThemePath(config()?.theme as string);
     const theme = await getThemeJson(themePath);
     if (theme.hasOwnProperty('fonts')) {
       window.WebFont.load({
@@ -210,7 +195,6 @@ createEffect(async () => {
     }
     const { css } = await generateTailwindCSSFromTheme(theme);
     appendTailwindCSS(css);
-    setTemporaryTheme(null);
     setTailwindClasses((prev) => {
       const obj = { ...prev, ...theme };
       yalWrapper?.classList.add(...obj['yal-wrapper'].split(' '));

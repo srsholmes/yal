@@ -10,7 +10,10 @@ declare global {
         setToast: (args: ToastArgs) => typeof toast;
       };
       throttle: (func: Function, time: number) => Function;
-      debounce: (func: Function, time: number) => Function;
+      debounce: <T extends unknown[], U>(
+        callback: (...args: T) => PromiseLike<U> | U,
+        wait: number
+      ) => (...args: T) => Promise<U>;
       Prism: typeof Prism;
       code: {
         highlightAll: () => Promise<void>;

@@ -17,7 +17,7 @@ export const BACKSPACE_KEY_CODE = 'Backspace';
 export let IS_DEV = window.IS_DEV === true;
 
 (() => {
-  invoke('is_dev_mode')
+  invoke<boolean>('is_dev_mode')
     .then((res: boolean) => {
       IS_DEV = res;
       window.IS_DEV = res;

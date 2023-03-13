@@ -9,7 +9,6 @@ import { getYalPath, YAL_DIR, YAL_DIR_PLUGINS } from 'utils/constants';
 import { exposeWindowProperties } from 'utils/plugin-actions';
 import { invoke } from '@tauri-apps/api';
 import { preventAppHide } from 'state/misc';
-import { setTemporaryTheme } from 'state/theme';
 import { setToast } from 'state/toast';
 
 async function setupEventListeners() {
@@ -19,7 +18,6 @@ async function setupEventListeners() {
     }
     setInputText('');
     invoke('app_hide_show', { forceHide: true });
-    setTemporaryTheme(null);
   });
 
   await listen('tauri://focus', async () => {
@@ -56,7 +54,7 @@ async function watchRoot() {
 }
 function codeHighlighting() {
   const configJson = config();
-  if (configJson['code_theme']) {
+  if (configJson?.['code_theme']) {
     import(`../styles/prism-themes/${configJson['code_theme']}.css`).catch(
       (e) => {
         setToast({

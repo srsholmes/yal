@@ -7,6 +7,8 @@ import { enableMouseOnResults } from 'utils/keyboard';
 import { YalPluginsMap } from 'types';
 import { unwrap } from 'solid-js/store';
 
+function noop() {}
+
 export function Results() {
   const firstWord = () => inputText().split(' ')[0];
   const hasKeyword = () => Boolean(plugins?.keyword?.[firstWord()]);
@@ -27,24 +29,27 @@ export function Results() {
             >
               {([name, plugin], index) => (
                 <Result
+                  isApp={false}
                   pluginName={name}
                   index={index()}
                   type="plugin"
                   plugin={plugin.plugin}
-                  debounce={plugin.debounce}
-                  throttle={plugin.throttle}
+                  debounce={plugin.debounce ?? false}
+                  throttle={plugin.throttle ?? false}
                   filter={plugin.filter ?? true}
-                  keepOpen={plugin.keepOpen}
+                  keepOpen={plugin.keepOpen ?? false}
                 />
               )}
             </For>
           </Match>
           <Match when={hasKeyword() && isApp()}>
             <ResultApp
-              pluginName={plugins?.keyword?.[firstWord()]?.pluginName}
+              filter={false}
+              isApp={true}
+              pluginName={plugins?.keyword?.[firstWord()]?.pluginName || ''}
               index={0}
               type="keyword"
-              plugin={plugins?.keyword?.[firstWord()]?.plugin}
+              plugin={plugins?.keyword?.[firstWord()]?.plugin || noop}
               debounce={plugins?.keyword?.[firstWord()]?.debounce}
               throttle={plugins?.keyword?.[firstWord()]?.throttle}
               keepOpen={plugins?.keyword?.[firstWord()]?.keepOpen}
@@ -52,10 +57,11 @@ export function Results() {
           </Match>
           <Match when={hasKeyword()}>
             <Result
-              pluginName={plugins?.keyword?.[firstWord()]?.pluginName}
+              isApp={false}
+              pluginName={plugins?.keyword?.[firstWord()]?.pluginName || ''}
               index={0}
               type="keyword"
-              plugin={plugins?.keyword?.[firstWord()]?.plugin}
+              plugin={plugins?.keyword?.[firstWord()]?.plugin || noop}
               filter={plugins?.keyword?.[firstWord()]?.filter ?? true}
               throttle={plugins?.keyword?.[firstWord()]?.throttle}
               debounce={plugins?.keyword?.[firstWord()]?.debounce}

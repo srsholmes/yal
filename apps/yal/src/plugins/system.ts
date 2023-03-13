@@ -97,7 +97,9 @@ export const system: YalPlugin = (args) => {
   args.setState({
     heading: `System`,
     action: (result) => {
-      yal.shell.appleScript({ command: getScriptCommand(result.item.name) });
+      if (result.item.name) {
+        yal.shell.appleScript({ command: getScriptCommand(result.item.name) });
+      }
     },
     state: initialResults,
   });

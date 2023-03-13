@@ -8,6 +8,7 @@ import { debounce } from './debounce';
 import { throttle } from './throttle';
 import Prism from 'prismjs';
 import { highlightAll } from './highlight';
+import { ChildProcess } from '@tauri-apps/api/shell';
 
 export const pluginActions: PluginActions = {
   copyToClipboard: (text: string) => {
@@ -33,7 +34,13 @@ export const pluginActions: PluginActions = {
   },
   process: index.process,
   shell: {
-    run: async ({ binary, args }: { binary: string; args?: string[] }) => {
+    run: async ({
+      binary,
+      args,
+    }: {
+      binary: string;
+      args?: string[];
+    }): Promise<ChildProcess | void> => {
       console.log('run', { binary, args });
       const path = await invoke<string>('which', { path: binary });
       if (path === '' || !path) {
@@ -43,17 +50,13 @@ export const pluginActions: PluginActions = {
         });
         return;
       }
-      const res = await yal.shell.shellCommand({
+      return await yal.shell.shellCommand({
         path: path,
         args,
       });
-      return res;
     },
     Command: index.shell.Command,
     shellCommand: async ({ path, args }: { path: string; args?: string[] }) => {
-      // console.log('shellCommand', { path, args });
-      console.log('shellCommand', { path, args });
-
       // if any of the args have spaces, wrap them in quotes
       const argsWithQuotes = args?.map((arg) => {
         if (arg.includes(' ')) {
@@ -62,14 +65,16 @@ export const pluginActions: PluginActions = {
         return arg;
       });
 
-      console.log('argsWithQuotes', argsWithQuotes);
+      const allArgs = args
+        ? args?.length > 0
+          ? argsWithQuotes?.join(' ')
+          : ''
+        : '';
+
       const res = await new yal.shell.Command('shell', [
         '-c',
-        `${path} ${args?.length > 0 ? argsWithQuotes.join(' ') : ''}`,
+        `${path} ${allArgs}`,
       ]).execute();
-      // console.log({ res });
-      // console.log('res.stdout', res.stdout);
-      // console.log('res.stderr', res.stderr);
       return res;
     },
     open: async ({ path, args }: { path: string; args?: string[] }) => {
@@ -105,7 +110,6 @@ export async function exposeWindowProperties() {
     code: {
       highlightAll: highlightAll,
     },
-    notification: pluginActions.notification,
     ...pluginActions,
   };
 }

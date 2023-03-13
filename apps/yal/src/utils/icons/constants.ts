@@ -1009,7 +1009,7 @@ export const ALL_ICONS = [...OTHER_ICONS, ...FILE_ICONS, ...FOLDER_ICONS];
 export const ICON_MAP = ALL_ICONS.reduce((acc, x) => {
   acc[x] = true;
   return acc;
-}, {});
+}, {} as Record<string, boolean>);
 
 export const icons = ALL_ICONS.map((x) => {
   return {

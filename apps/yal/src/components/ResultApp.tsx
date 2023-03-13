@@ -11,7 +11,6 @@ import {
 import { setToast } from 'state/toast';
 import { ResultsProps } from 'types';
 import { debounce as debounceFn } from 'utils/debounce';
-import { highlightAll } from 'utils/highlight';
 import { throttle } from 'utils/throttle';
 
 export function ResultApp(props: ResultsProps) {
@@ -30,7 +29,7 @@ export function ResultApp(props: ResultsProps) {
       setState: () => {},
       text: searchTerm(),
       pluginPath: `${yal.config.pluginsPath}/${props.pluginName}`,
-      appNode: document.getElementById('app'),
+      appNode: document.getElementById('app')!,
       system: {
         apps: unwrap(apps()),
       },
@@ -50,14 +49,13 @@ export function ResultApp(props: ResultsProps) {
   }
 
   createEffect(() => {
-    // TODO: look at performance of this with a large app.
-    const callback = async (mutationList) => {
+    const callback = async (mutationList: MutationRecord[]) => {
       if (mutationList.length > 0) {
         await generateCSS();
       }
     };
     const observer = new MutationObserver(callback);
-    observer.observe(document.getElementById('app'), {
+    observer.observe(document.getElementById('app')!, {
       attributes: true,
       characterData: true,
       childList: true,

@@ -17,16 +17,15 @@ export const getKeywords = (plugins: {
 
     args.setState({
       heading: `Registered Plugins with Keywords`,
-      action: (result) => {
-        args.utils.setInputText(result.item.name);
-      },
       state: keywords,
+      action: (result) => {
+        // TODO: Fix this, it doesn't work
+        if (result.item.name) {
+          args.utils.setInputText(result.item.name);
+        }
+      },
     });
   };
-};
-
-export const config: YalPluginsConfig = {
-  keywords: 'plugins',
 };
 
 export default getKeywords;

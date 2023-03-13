@@ -4,7 +4,7 @@ import { tailwindClasses } from 'state/theme';
 import { getIcon } from 'utils/icons';
 
 interface Props {
-  icon: string | Icon;
+  icon?: string | Icon;
   pluginName: string;
 }
 

@@ -13,5 +13,12 @@
     "isolatedModules": true,
     "baseUrl": "./src",
     "lib": ["es2020", "esnext", "dom"]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/declarations.d.ts"
+  ]
 }

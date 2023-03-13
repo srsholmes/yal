@@ -33,7 +33,7 @@ async function getPluginsAndWaitForServer() {
     })
     .map((x) => x.name);
 
-  if (pluginNames.length === 0) return;
+  if (pluginNames.length === 0) return [];
   let serverConnected = false;
   // Wait for the server to spin up....
   while (!serverConnected) {

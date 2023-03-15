@@ -1,11 +1,13 @@
 import { PluginActions } from './pluginActions';
 import toast from 'solid-toast';
 import Prism from 'prismjs';
+import WebFont from 'webfontloader';
 
 declare global {
   const yal: PluginActions & { config: { pluginsPath: string } };
   interface Window {
     yal: PluginActions & {
+      WebFont: typeof WebFont;
       toast: {
         setToast: (args: ToastArgs) => typeof toast;
       };

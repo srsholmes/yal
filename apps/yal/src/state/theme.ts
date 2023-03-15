@@ -3,6 +3,7 @@ import { BaseDirectory, readDir } from '@tauri-apps/api/fs';
 import { createEffect, createSignal } from 'solid-js';
 import { config } from 'state/config';
 import { getYalPath, YAL_DIR_THEMES } from 'utils/constants';
+import WebFont from 'webfontloader';
 
 export const DEFAULT_THEME_NAME = 'yal-default';
 
@@ -187,9 +188,9 @@ createEffect(async () => {
     const themePath = await getThemePath(config()?.theme as string);
     const theme = await getThemeJson(themePath);
     if (theme.hasOwnProperty('fonts')) {
-      window.WebFont.load({
+      window.yal.WebFont.load({
         google: {
-          families: theme['fonts'],
+          families: [theme['fonts']],
         },
       });
     }

@@ -9,6 +9,7 @@ import { throttle } from './throttle';
 import Prism from 'prismjs';
 import { highlightAll } from './highlight';
 import { ChildProcess } from '@tauri-apps/api/shell';
+import WebFont from 'webfontloader';
 
 export const pluginActions: PluginActions = {
   copyToClipboard: (text: string) => {
@@ -98,6 +99,7 @@ export async function exposeWindowProperties() {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   window.yal = {
+    WebFont: WebFont,
     config: {
       pluginsPath: PLUGINS_PATH,
     },

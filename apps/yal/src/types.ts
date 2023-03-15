@@ -31,11 +31,9 @@ export type PluginResultInternal = PluginResult & {
 };
 
 // declare global window type
-
 declare global {
   interface Window {
     IS_PROD: boolean;
     IS_DEV: boolean;
-    WebFont: any;
   }
 }

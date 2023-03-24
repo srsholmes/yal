@@ -27,7 +27,9 @@ rustup update # Update
 
 ```
 
-and then
+Follow the prerequisites for setting up [tauri](https://tauri.app/v1/guides/getting-started/prerequisites/).
+
+Then run the following command to build the app:
 
 ```bash
 yarn workspace @apps/yal prod:install

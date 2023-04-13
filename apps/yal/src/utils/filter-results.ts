@@ -21,7 +21,7 @@ export const filterResults = <T = ResultLineItem>({
   if (!searchTerm) return [];
   if (searchTerm) {
     const results = fuzzysort.go(searchTerm, items, {
-      key: 'name',
+      keys: ['name', 'description', 'metadata'],
     });
     return results
       .map((result) => result.obj)

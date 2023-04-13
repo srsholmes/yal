@@ -64,7 +64,11 @@ export type PluginActions = {
     }) => Promise<index.shell.ChildProcess | void>;
     shellCommand: YalCommand;
     open: YalCommand;
-    appleScript: ({ command }: { command: string }) => Promise<void>;
+    appleScript: ({
+      command,
+    }: {
+      command: string;
+    }) => Promise<index.shell.ChildProcess | void>;
     Command: typeof index.shell.Command;
   };
   windowUtils: typeof index.window;

@@ -58,7 +58,6 @@ export const pluginActions: PluginActions = {
     },
     Command: index.shell.Command,
     shellCommand: async ({ path, args }: { path: string; args?: string[] }) => {
-      console.log('BBBBBBBBBBB', { path, args})
       // if any of the args have spaces, wrap them in quotes
       const argsWithQuotes = args?.map((arg) => {
         if (arg.includes(' ')) {

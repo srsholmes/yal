@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "yarn workspace @apps/yal tauri:dev",
     "symlink:dotfiles": "ln -s ~/.yal ",
+    "install:yal": "yarn workspace @apps/yal run prod:install",
     "install:all": "yarn workspace @apps/yal run prod:install && yarn install:themes",
     "install:themes": "yarn workspace @package/themes run install:themes"
   },
